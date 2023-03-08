@@ -1,5 +1,23 @@
 # Menu and Encoder by Gabriel Fernandez
 
+def decode(password):
+    """Decoding a password"""
+    decoded_password = ""  # An empty string to be added to
+
+    for num in password:
+        num = int(num)
+
+        if num > 2:  # Subtracting 3 to decode the number
+            decoded_num = num - 3
+            decoded_password += str(decoded_num)
+
+        elif 0 <= num <= 2:  # If the number is 0-2, it needs to wrap (eg. 2 - 3 = -1. Instead, 2 + 10 - 3 = 9)
+            decoded_num = num + 7
+            decoded_password += str(decoded_num)
+
+    return decoded_password
+
+
 def main():
     cont = True
     password = ''
@@ -31,8 +49,9 @@ def main():
             for i in range(len(rawpass)):
                 password += str((int(rawpass[i]) + 7) % 10)     # The encoder performs a Caesar shift of +7 on each digit of the password.
             print("Your password has been encoded and stored!")
-        elif (input == 2):
-            pass # Decode section for partner to write
+        elif (inp == 2):
+            print(f"The encoded password is {password}, and the original password is {decode(password)}.")
+
 
         print()
 
