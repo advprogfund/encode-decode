@@ -1,5 +1,12 @@
 # Menu and Encoder by Gabriel Fernandez
 
+def encode(pwrd):
+    # The encoder performs a Caesar shift of +3 on each digit of the password.
+    password = ''
+    for i in range(len(pwrd)):
+        password += str((int(pwrd[i]) + 3) % 10)
+    return password
+
 def decode(password):
     """Decoding a password"""
     decoded_password = ""  # An empty string to be added to
@@ -46,8 +53,7 @@ def main():
                     takein = False
                 elif (len(rawpass) < 8):    # If password is shorter than 8 digits, the program has no choice but to request new input from the user.
                     print("Password must be eight digits.")
-            for i in range(len(rawpass)):
-                password += str((int(rawpass[i]) + 7) % 10)     # The encoder performs a Caesar shift of +7 on each digit of the password.
+                password = encode(rawpass)
             print("Your password has been encoded and stored!")
         elif (inp == 2):
             print(f"The encoded password is {password}, and the original password is {decode(password)}.")
